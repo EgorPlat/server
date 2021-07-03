@@ -7,7 +7,6 @@ const morgan = require('morgan') // логирование запросов
 const mongoose = require('mongoose'); 
 const keys = require('./config/keys');
 const passport = require('passport');
-const chatRoutes = require('./routes/chat');
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('МонгоДБ успешно подключена!'))

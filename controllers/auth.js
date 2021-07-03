@@ -42,7 +42,7 @@ module.exports.register = async function (req, res) {
             name: req.body.name,
             email: req.body.email,
             password: bcrypt.hashSync(password, salt),
-            balance: req.body.balance
+            surname: req.body.surname
         })
         try {
             await user.save()
@@ -51,16 +51,6 @@ module.exports.register = async function (req, res) {
             errorHandler(res, error)
         }
     }
-}
-module.exports.updateBalance = async function(req, res) {
-    User.findOneAndUpdate(
-        { email: req.body.email }, // критерий выборки
-        { $set: {balance: req.body.balance} }, // параметр обновления
-        async function(err, result){
-            const newUserData = await User.findOne({email: req.body.email});
-            res.status(200).json(newUserData) 
-        }
-    );
 }
 module.exports.getUserData = async function(req, res) {
     const user = await User.findOne(
